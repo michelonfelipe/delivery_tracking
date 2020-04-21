@@ -1,0 +1,5 @@
+# Ignores local tests results
+spec/examples.txt
+
+# Ignores local environment variables
+.env
