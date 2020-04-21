@@ -12,7 +12,21 @@ Using [Bundler](bundler.io) (should be installed if you are using RVM), run:
 bundler install
 ```
 
-After that, you should be able to run the app.
+### Environment variables
+
+For that, we have a `.env.sample` file. To create a local file, create a `.env` file with:
+```
+cp .env.sample .env
+```
+You can fill each variable with the following:
+
+#### `DATABASE_URL`
+Url to connect with database.
+
+Template: postgres://user:password@host:port
+Example: postgres://postgres:root@localhost:5432
+
+NOTE: **Do not** write a database name on the url, the file `config/database.yml` will create the database with the right name.
 
 ## Running the app
 

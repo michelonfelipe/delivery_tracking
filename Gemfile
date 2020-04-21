@@ -7,6 +7,7 @@ ruby '2.7.0'
 gem 'sinatra', '~> 2.0.8.1'
 
 group :development, :test do
+  gem 'dotenv', '~> 2.7.5'
   gem 'pry', '~> 0.12.2'
 end
 
