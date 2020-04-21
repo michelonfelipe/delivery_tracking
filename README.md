@@ -31,3 +31,17 @@ We use [Rubocop](https://github.com/rubocop-hq/rubocop) as a linter. To check yo
 ```
 rubocop
 ```
+
+
+### Debugging
+
+When you need to debug something, use [pry](https://github.com/pry/pry) as the following example:
+
+```ruby
+class Foo
+  def bar
+    puts 'I need to debug the next line'
+    binding.pry #code will stop here
+  end
+end
+```
