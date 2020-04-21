@@ -2,19 +2,12 @@
 
 ENV['APP_ENV'] = 'test'
 
-require 'rack/test'
 require_relative '../app.rb'
 
-module RSpecMixin
-  include ::Rack::Test::Methods
-
-  def app
-    Sinatra::Application
-  end
-end
+Dir[File.dirname(__FILE__) + '/support/**/*.rb'].each { |f| require f } # rubocop:disable Lint/NonDeterministicRequireOrder
 
 RSpec.configure do |config|
-  config.include RSpecMixin
+  config.include SinatraRSpecMixin
 
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
