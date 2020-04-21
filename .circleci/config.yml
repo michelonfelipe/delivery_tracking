@@ -1,0 +1,49 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/delivery_tracking
+    docker:
+      - image: circleci/ruby:2.7.0
+        environment:
+          APP_ENV: test
+          DATABASE_URL: postgresql://user:pass@localhost:5432
+      - image: postgres:11-alpine
+        environment:
+          POSTGRES_USER: user
+          POSTGRES_PASSWORD: pass
+    steps:
+      - checkout
+
+      - restore_cache:
+          name: Restore ruby cache
+          key: delivery_tracking-{{ checksum "Gemfile.lock" }}
+
+      - run:
+          name: Install ruby dependencies
+          command: bundle install --path vendor/bundle
+
+      - save_cache:
+          name: Store bundle cache
+          key: delivery_tracking-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      - run:
+          name: Run ruby linter
+          command: bundle exec rubocop
+
+      - run:
+          name: Setup database
+          command: bundle exec rake db:create db:migrate
+
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1000m
+
+      - run:
+          name: Setup the database
+          command: bundle exec rake db:setup db:test:prepare
+
+      - run:
+          name: Run the ruby tests
+          command: bundle exec rspec
