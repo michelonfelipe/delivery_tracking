@@ -33,16 +33,12 @@ jobs:
           command: bundle exec rubocop
 
       - run:
-          name: Setup database
-          command: bundle exec rake db:create db:migrate
-
-      - run:
           name: Wait for DB
           command: dockerize -wait tcp://localhost:5432 -timeout 1000m
 
       - run:
           name: Setup the database
-          command: bundle exec rake db:setup db:test:prepare
+          command: bundle exec rake db:create # db:migrate
 
       - run:
           name: Run the ruby tests
