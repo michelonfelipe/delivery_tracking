@@ -1,6 +1,7 @@
 AllCops:
   Exclude:
     - '.git/**/*'
+    - 'vendor/**/*'
 
 # Layout
 Layout/LineLength:
