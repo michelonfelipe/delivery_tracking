@@ -21,3 +21,13 @@ Just run:
 ```
 ruby ./app.rb
 ```
+
+## Code Maintenance
+
+### Code styles
+
+We use [Rubocop](https://github.com/rubocop-hq/rubocop) as a linter. To check your code, run:
+
+```
+rubocop
+```

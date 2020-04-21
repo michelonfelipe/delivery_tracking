@@ -1,0 +1,33 @@
+AllCops:
+  Exclude:
+    - '.git/**/*'
+
+# Layout
+Layout/LineLength:
+  Max: 100
+
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
+# Lint
+Lint/RaiseException:
+  Enabled: true
+
+Lint/StructNewOverride:
+  Enabled: true
+
+# Style
+Style/Documentation:
+  Enabled: false
+
+Style/ExponentialNotation:
+  Enabled: true
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
