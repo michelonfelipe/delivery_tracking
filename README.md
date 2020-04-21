@@ -28,6 +28,17 @@ Example: postgres://postgres:root@localhost:5432
 
 NOTE: **Do not** write a database name on the url, the file `config/database.yml` will create the database with the right name.
 
+
+### Database Setup
+
+To create and setup both development and test databases, run:
+
+```
+rake db:create db:migrate
+```
+
+NOTE: Make sure the `DATABASE_URL` is set correctly.
+
 ## Running the app
 
 Just run:
