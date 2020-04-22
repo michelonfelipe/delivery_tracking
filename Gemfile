@@ -11,6 +11,7 @@ gem 'sinatra-activerecord', '~> 2.0.18'
 
 group :development, :test do
   gem 'dotenv', '~> 2.7.5'
+  gem 'factory_bot', '~> 5.1.2'
   gem 'pry', '~> 0.12.2'
 end
 
