@@ -6,6 +6,7 @@ require 'sinatra/activerecord'
 
 require_relative './app/controllers/delivery_companies_controller.rb'
 require_relative './app/exceptions/unprocessable_entity_error.rb'
+require_relative './app/exceptions/resource_not_found_error.rb'
 
 set :database_file, './config/database.yml'
 
@@ -24,13 +25,22 @@ post '/delivery_companies' do
 
   begin
     status 201
-    DeliveryCompaniesController.create(raw_params).to_json
+    DeliveryCompaniesController.create(parsed_request_body).to_json
   rescue UnprocessableEntityError => e
     status 422
     e.message
   end
 end
 
-def raw_params
+delete '/delivery_companies/:id' do
+  begin
+    status 204
+    DeliveryCompaniesController.delete(params['id'])
+  rescue ResourceNotFoundError
+    status 404
+  end
+end
+
+def parsed_request_body
   JSON.parse(request.body.read)
 end

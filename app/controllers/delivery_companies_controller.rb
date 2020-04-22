@@ -3,6 +3,7 @@
 require_relative '../models/delivery_company.rb'
 require_relative '../decorators/delivery_company_decorator.rb'
 require_relative '../exceptions/unprocessable_entity_error.rb'
+require_relative '../exceptions/resource_not_found_error.rb'
 
 class DeliveryCompaniesController
   def self.index
@@ -19,6 +20,13 @@ class DeliveryCompaniesController
 
     delivery_company.save
     DeliveryCompanyDecorator.call(delivery_company)
+  end
+
+  def self.delete(id)
+    delivery_company = DeliveryCompany.find_by(id: id)
+    raise ResourceNotFoundError unless delivery_company
+
+    delivery_company.destroy
   end
 
   def self.creation_params(params)
