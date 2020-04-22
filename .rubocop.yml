@@ -2,7 +2,7 @@ AllCops:
   Exclude:
     - '.git/**/*'
     - 'vendor/**/*'
-
+    - 'db/schema.rb'
 # Layout
 Layout/LineLength:
   Max: 100
@@ -16,6 +16,11 @@ Lint/RaiseException:
 
 Lint/StructNewOverride:
   Enabled: true
+
+# Metrics
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
 
 # Style
 Style/Documentation:
@@ -32,3 +37,6 @@ Style/HashTransformKeys:
 
 Style/HashTransformValues:
   Enabled: true
+
+Style/RedundantBegin:
+  Enabled: false
