@@ -6,11 +6,11 @@ default: &default
 
 development:
   <<: *default
-  database: feedback_plataform_development
+  database: delivery_tracking_development
 
 test:
   <<: *default
-  database: feedback_plataform_test
+  database: delivery_tracking_test
 
 production:
   <<: *default

@@ -2,7 +2,7 @@ AllCops:
   Exclude:
     - '.git/**/*'
     - 'vendor/**/*'
-
+    - 'db/schema.rb'
 # Layout
 Layout/LineLength:
   Max: 100
