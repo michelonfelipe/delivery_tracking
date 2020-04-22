@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe '/delivery_companies' do
+RSpec.describe 'GET /delivery_companies' do
   context 'given a GET request to /delivery_companies' do
     let(:subjet) { get '/delivery_companies' }
 
