@@ -5,6 +5,7 @@ require 'dotenv/load'
 require 'sinatra/activerecord'
 
 require_relative './app/controllers/delivery_companies_controller.rb'
+require_relative './app/controllers/notification_requests_controller.rb'
 require_relative './app/exceptions/unprocessable_entity_error.rb'
 require_relative './app/exceptions/resource_not_found_error.rb'
 
@@ -38,6 +39,18 @@ delete '/delivery_companies/:id' do
     DeliveryCompaniesController.delete(params['id'])
   rescue ResourceNotFoundError
     status 404
+  end
+end
+
+post '/notification_requests' do
+  content_type :json
+
+  begin
+    status 204
+    NotificationRequestController.create(parsed_request_body).to_json
+  rescue UnprocessableEntityError => e
+    status 422
+    e.message
   end
 end
 
