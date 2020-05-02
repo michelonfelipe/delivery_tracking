@@ -3,3 +3,9 @@ spec/examples.txt
 
 # Ignores local environment variables
 .env
+
+# Terraform
+terraform/.terraform
+terraform/*.tfplan
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup

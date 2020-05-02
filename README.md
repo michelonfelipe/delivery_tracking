@@ -83,3 +83,9 @@ If you want to run a single file, or a group of files, you can specify a path:
 rspec spec/requests
 rspec spec/requests/base_spec.rb
 ```
+
+## Infrastructure
+
+To maintain our infra, we use [Terraform](https://terraform.io). All files related to that, can be found on [terraform](terraform/) directory.
+
+For running **any** terraform commands, you should have two environment variables: `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`. We recommend using [aws-vault](https://github.com/99designs/aws-vault) to manage your AWS credentials

@@ -2,6 +2,7 @@ AllCops:
   Exclude:
     - '.git/**/*'
     - 'vendor/**/*'
+    - 'terraform/**/*'
     - 'db/schema.rb'
 # Layout
 Layout/LineLength:
