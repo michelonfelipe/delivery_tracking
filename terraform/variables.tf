@@ -1,5 +1,4 @@
 # SNS
-
 variable "sns_topic_name_example" {
   description = "The name of the example sns topic"
   type        = string

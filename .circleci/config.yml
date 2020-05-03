@@ -7,6 +7,7 @@ jobs:
         environment:
           APP_ENV: test
           DATABASE_URL: postgresql://user:pass@localhost:5432
+          AWS_REGION: us-east-2
       - image: postgres:11-alpine
         environment:
           POSTGRES_USER: user
