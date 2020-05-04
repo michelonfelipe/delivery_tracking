@@ -28,6 +28,8 @@ Example: postgres://postgres:root@localhost:5432
 
 NOTE: **Do not** write a database name on the url, the file `config/database.yml` will create the database with the right name.
 
+#### `NOTIFICATION_REQUEST_PUBLISHER_ARN`
+Topic's arn to publish messages when a `NotificationRequest` is created
 
 ### Database Setup
 
