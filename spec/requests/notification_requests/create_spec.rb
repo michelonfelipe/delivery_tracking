@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative '../../factories/delivery_company.rb'
 require_relative '../../../app/models/delivery_company.rb'
 
 RSpec.describe 'POST /notification_requests' do
@@ -14,6 +15,10 @@ RSpec.describe 'POST /notification_requests' do
           email_for_contact: 'test@mail.com',
           delivery_company_id: create(:delivery_company).id
         }
+      end
+
+      before(:each) do
+        allow_any_instance_of(NotificationRequestPublisher).to receive(:publish)
       end
 
       it 'returns status 204' do

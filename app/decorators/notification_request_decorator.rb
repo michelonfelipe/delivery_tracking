@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class NotificationRequestDecorator
+  # TODO: Turn class methods on instance methods
   def self.call(notification_request)
     {
       id: notification_request.id,
