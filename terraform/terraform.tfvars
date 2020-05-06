@@ -1,6 +1,6 @@
 # SNS
-sns_topic_name_example="example-topic"
+sns_topic_name_notification_request_creation="notification-request-creation-topic"
 
 # SQS
-sqs_queue_name_example="example-queue"
-sqs_queue_name_example_deadletter="example-queue-deadletter"
+sqs_queue_name_notification_request_creation="notification-request-creation"
+sqs_queue_name_notification_request_creation_deadletter="notification-request-creation-deadletter"

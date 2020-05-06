@@ -1,9 +1,9 @@
 # SNS
-output "example_topic_arn" {
-  value = aws_sns_topic.example_topic.arn
+output "notification_request_creation_topic_arn" {
+  value = aws_sns_topic.notification_request_creation.arn
 }
 
 # SQS
-output "example_queue_arn" {
-  value = aws_sqs_queue.example_queue.arn
+output "notification_request_creation_queue_arn" {
+  value = aws_sqs_queue.notification_request_creation.arn
 }

@@ -1,3 +1,3 @@
-resource "aws_sns_topic" "example_topic" {
-  name = var.sns_topic_name_example
+resource "aws_sns_topic" "notification_request_creation" {
+  name = var.sns_topic_name_notification_request_creation
 }
