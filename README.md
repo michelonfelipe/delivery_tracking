@@ -28,6 +28,8 @@ Example: postgres://postgres:root@localhost:5432
 
 NOTE: **Do not** write a database name on the url, the file `config/database.yml` will create the database with the right name.
 
+#### `NOTIFICATION_REQUEST_PUBLISHER_ARN`
+Topic's arn to publish messages when a `NotificationRequest` is created
 
 ### Database Setup
 
@@ -88,4 +90,4 @@ rspec spec/requests/base_spec.rb
 
 To maintain our infra, we use [Terraform](https://terraform.io). All files related to that, can be found on [terraform](terraform/) directory.
 
-For running **any** terraform commands, you should have two environment variables: `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`. We recommend using [aws-vault](https://github.com/99designs/aws-vault) to manage your AWS credentials
+For running **any** terraform commands, you should have three environment variables: `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` and `AWS_DEFAULT_REGION`. We recommend using [aws-vault](https://github.com/99designs/aws-vault) to manage your AWS credentials

@@ -6,6 +6,7 @@ require_relative '../exceptions/unprocessable_entity_error.rb'
 require_relative '../exceptions/resource_not_found_error.rb'
 
 class DeliveryCompaniesController
+  # TODO: Turn class methods on instance methods
   def self.index
     DeliveryCompany.all.map do |delivery_company|
       DeliveryCompanyDecorator.call(delivery_company)

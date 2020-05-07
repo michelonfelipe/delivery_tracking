@@ -47,7 +47,7 @@ post '/notification_requests' do
 
   begin
     status 204
-    NotificationRequestController.create(parsed_request_body).to_json
+    NotificationRequestController.new(params: parsed_request_body).create.to_json
   rescue UnprocessableEntityError => e
     status 422
     e.message

@@ -4,27 +4,37 @@ require_relative '../models/notification_request.rb'
 require_relative '../decorators/notification_request_decorator.rb'
 require_relative '../exceptions/unprocessable_entity_error.rb'
 require_relative '../exceptions/resource_not_found_error.rb'
+require_relative '../../infra/sns/notification_request_publisher'
 
 class NotificationRequestController
-  def self.create(raw_params)
-    sanitized_params = creation_params(raw_params)
-    notification_request = NotificationRequest.new(sanitized_params)
+  def initialize(
+    params:,
+    notification_request_publisher: NotificationRequestPublisher.new
+  )
+    @params = params
+    @notification_request_publisher = notification_request_publisher
+  end
 
+  def create
+    notification_request = NotificationRequest.new(creation_params)
     unless notification_request.valid?
       raise UnprocessableEntityError, notification_request.errors.to_json
     end
 
+    # TODO: Create transaction, so if any error occur, the entity will not be saved
     notification_request.save
-    NotificationRequestDecorator.call(notification_request)
+    decorated_entity = NotificationRequestDecorator.call(notification_request)
+    @notification_request_publisher.publish(decorated_entity)
+    decorated_entity
   end
 
-  def self.creation_params(params)
+  private
+
+  def creation_params
     {
-      tracking_code: params['tracking_code'],
-      email_for_contact: params['email_for_contact'],
-      delivery_company_id: params['delivery_company_id']
+      tracking_code: @params['tracking_code'],
+      email_for_contact: @params['email_for_contact'],
+      delivery_company_id: @params['delivery_company_id']
     }
   end
-
-  private_class_method :creation_params
 end
