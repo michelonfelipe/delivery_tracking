@@ -41,4 +41,16 @@ RSpec.describe NotificationRequest do
       end
     end
   end
+
+  context 'when it has statuses' do
+    let(:subject) { create(:notification_request) }
+
+    before(:each) do
+      create_list(:notification_request_status, 2, notification_request: subject)
+    end
+
+    it 'they are ordered by #created_at' do
+      expect(subject.statuses.last.created_at).to be >= subject.statuses.first.created_at
+    end
+  end
 end
