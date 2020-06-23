@@ -18,7 +18,7 @@ RSpec.describe 'POST /notification_requests' do
       end
 
       before(:each) do
-        allow_any_instance_of(NotificationRequestPublisher).to receive(:publish)
+        allow_any_instance_of(NotificationRequestCreatedPublisher).to receive(:publish)
       end
 
       it 'returns status 204' do

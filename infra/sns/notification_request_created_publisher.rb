@@ -3,13 +3,13 @@
 require 'aws-sdk-sns'
 require 'json'
 
-class NotificationRequestPublisher
+class NotificationRequestCreatedPublisher
   def initialize(client: Aws::SNS::Resource.new)
     @client = client
   end
 
   def publish(raw_message)
-    topic = @client.topic(ENV['NOTIFICATION_REQUEST_PUBLISHER_ARN'])
+    topic = @client.topic(ENV['NOTIFICATION_REQUEST_CREATED_PUBLISHER_ARN'])
     enconded_message = JSON.generate(raw_message)
     puts "[#{self.class}] sending message #{enconded_message}"
     topic.publish({ message: enconded_message })
