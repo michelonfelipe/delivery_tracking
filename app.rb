@@ -6,6 +6,7 @@ require 'sinatra/activerecord'
 
 require_relative './app/controllers/delivery_companies_controller.rb'
 require_relative './app/controllers/notification_requests_controller.rb'
+require_relative './app/controllers/reminders_controller.rb'
 require_relative './app/exceptions/unprocessable_entity_error.rb'
 require_relative './app/exceptions/resource_not_found_error.rb'
 
@@ -40,6 +41,11 @@ delete '/delivery_companies/:id' do
   rescue ResourceNotFoundError
     status 404
   end
+end
+
+post '/reminders/update_notification_requests' do
+  status 204
+  RemindersController.new.update_notification_requests
 end
 
 post '/notification_requests' do
