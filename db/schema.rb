@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_08_022017) do
+ActiveRecord::Schema.define(version: 2020_06_23_014337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,9 @@ ActiveRecord::Schema.define(version: 2020_06_08_022017) do
     t.string "email_for_contact"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "status"
     t.index ["delivery_company_id"], name: "index_notification_requests_on_delivery_company_id"
+    t.index ["status"], name: "index_notification_requests_on_status"
   end
 
 end

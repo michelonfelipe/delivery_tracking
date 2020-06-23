@@ -2,13 +2,13 @@
 
 require 'aws-sdk-sns'
 require 'json'
-require_relative '../../../infra/sns/notification_request_publisher'
+require_relative '../../../infra/sns/notification_request_created_publisher'
 
 # TODO: Remove logs when running tests
-RSpec.describe NotificationRequestPublisher do
+RSpec.describe NotificationRequestCreatedPublisher do
   context 'when there is a message' do
     let(:message) { 'message' }
-    let(:arn) { ENV['NOTIFICATION_REQUEST_PUBLISHER_ARN'] }
+    let(:arn) { ENV['NOTIFICATION_REQUEST_CREATED_PUBLISHER_ARN'] }
     let(:expected_return) { { message_id: 1 } }
     let(:published_message) { { message: JSON.generate(message) } }
     let(:subject) { described_class.new(client: double_client) }

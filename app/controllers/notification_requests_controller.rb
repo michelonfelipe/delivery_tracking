@@ -4,15 +4,15 @@ require_relative '../models/notification_request.rb'
 require_relative '../decorators/notification_request_decorator.rb'
 require_relative '../exceptions/unprocessable_entity_error.rb'
 require_relative '../exceptions/resource_not_found_error.rb'
-require_relative '../../infra/sns/notification_request_publisher'
+require_relative '../../infra/sns/notification_request_created_publisher'
 
 class NotificationRequestController
   def initialize(
     params:,
-    notification_request_publisher: NotificationRequestPublisher.new
+    notification_request_created_publisher: NotificationRequestCreatedPublisher.new
   )
     @params = params
-    @notification_request_publisher = notification_request_publisher
+    @notification_request_created_publisher = notification_request_created_publisher
   end
 
   def create
@@ -24,7 +24,7 @@ class NotificationRequestController
     # TODO: Create transaction, so if any error occur, the entity will not be saved
     notification_request.save
     decorated_entity = NotificationRequestDecorator.call(notification_request)
-    @notification_request_publisher.publish(decorated_entity)
+    @notification_request_created_publisher.publish(decorated_entity)
     decorated_entity
   end
 
