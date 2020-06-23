@@ -40,6 +40,14 @@ RSpec.describe NotificationRequest do
         expect(subject.valid?).to eq false
       end
     end
+
+    context 'because it has no status' do
+      let(:subject) { build(:notification_request, status: nil) }
+
+      it 'cannot be saved' do
+        expect(subject.valid?).to eq false
+      end
+    end
   end
 
   context 'when it has statuses' do
