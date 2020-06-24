@@ -9,3 +9,8 @@ terraform/.terraform
 terraform/*.tfplan
 terraform/terraform.tfstate
 terraform/terraform.tfstate.backup
+
+# Lambdas dependencies and the zipfile
+infra/lambdas/*/vendor/
+infra/lambdas/*/.bundle/
+infra/lambdas/*/lambda.zip

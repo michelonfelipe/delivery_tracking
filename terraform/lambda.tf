@@ -6,6 +6,12 @@ resource "aws_lambda_function" "notification_request_update" {
   runtime          = var.lambda_notification_request_update_runtime
   timeout          = var.lambda_notification_request_update_timeout
   source_code_hash = filebase64sha256(var.lambda_notification_request_update_filename)
+
+  environment {
+    variables = {
+      BACKEND_URL = var.lambda_backend_url
+    }
+  }
 }
 
 resource "aws_lambda_permission" "notification_request_update_permission" {

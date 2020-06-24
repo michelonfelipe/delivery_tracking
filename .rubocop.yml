@@ -2,6 +2,7 @@ AllCops:
   Exclude:
     - '.git/**/*'
     - 'vendor/**/*'
+    - 'infra/lambdas/*/vendor/**/*'
     - 'terraform/**/*'
     - 'db/schema.rb'
 # Layout
@@ -17,6 +18,10 @@ Lint/RaiseException:
 
 Lint/StructNewOverride:
   Enabled: true
+
+Lint/UnusedMethodArgument:
+  Enabled: true
+  AllowUnusedKeywordArguments: true
 
 # Metrics
 Metrics/BlockLength:

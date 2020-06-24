@@ -25,6 +25,11 @@ variable "lambda_notification_request_update_timeout" {
   type        = string
 }
 
+variable "lambda_backend_url" {
+  description = "The backend url used in lambda notification_request_update"
+  type        = string
+}
+
 # SNS
 variable "sns_topic_name_notification_request_creation" {
   description = "The name of the sns topic notification_request_creation"
