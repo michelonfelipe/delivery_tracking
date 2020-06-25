@@ -2,7 +2,7 @@
 
 require_relative '../models/notification_request.rb'
 require_relative '../decorators/notification_request_decorator.rb'
-require_relative '../../infra/sns/notification_request_created_publisher'
+require_relative '../../infra/sns/notification_request_update_publisher'
 
 class RemindersController
   def initialize(

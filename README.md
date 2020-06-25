@@ -94,3 +94,15 @@ rspec spec/requests/base_spec.rb
 To maintain our infra, we use [Terraform](https://terraform.io). All files related to that, can be found on [terraform](terraform/) directory.
 
 For running **any** terraform commands, you should have three environment variables: `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` and `AWS_DEFAULT_REGION`. We recommend using [aws-vault](https://github.com/99designs/aws-vault) to manage your AWS credentials
+
+### Deploying lambdas
+
+Each lambda on [lambdas directory](infra/lambdas) has a Makefile. To generate it's zip, just run the following command on every directory:
+
+```bash
+make
+```
+
+After that, run terraform plan/apply to deploy all lambdas at once.
+
+NOTE: If there is a change on a lambda function, just rerun the `make` command on it's directory. Terraform will notice that the zip file changed its hashcode and redeploy the function
