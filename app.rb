@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'sinatra'
-require 'dotenv/load'
+require 'dotenv/load' unless production?
 require 'sinatra/activerecord'
 
 require_relative './app/controllers/delivery_companies_controller.rb'
