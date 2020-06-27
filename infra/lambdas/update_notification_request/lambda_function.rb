@@ -30,7 +30,7 @@ def send_status_to_backend(status, destiny_url, notification_request_id)
   http = Net::HTTP.new(uri.host, uri.port)
   http.use_ssl = true
   request = Net::HTTP::Post.new(uri.request_uri)
-  request.body = status
+  request.body = { content: status }.to_json
   http.request(request)
 end
 

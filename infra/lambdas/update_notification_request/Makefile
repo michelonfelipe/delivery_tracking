@@ -7,5 +7,7 @@ create-zip-file:
 # Commands that start with underscore are run *inside* the container.
 
 _install:
+	bundle config --local set clean true
+	bundle config --local set path 'vendor/bundle'
 	bundle config --local silence_root_warning true
-	bundle install --path vendor/bundle --clean
+	bundle install
