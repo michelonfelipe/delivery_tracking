@@ -60,6 +60,24 @@ post '/notification_requests' do
   end
 end
 
+post '/notification_requests/:id/status' do
+  controller_params = {
+    'notification_request_id' => params['id'],
+    'content' => parsed_request_body['content']
+  }
+
+  begin
+    status 201
+    NotificationRequestController
+      .new(params: controller_params)
+      .update_status
+  rescue UnprocessableEntityError => e
+    content_type :json
+    status 422
+    e.message
+  end
+end
+
 def parsed_request_body
   JSON.parse(request.body.read)
 end

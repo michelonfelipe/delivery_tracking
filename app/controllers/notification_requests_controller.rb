@@ -28,6 +28,15 @@ class NotificationRequestController
     decorated_entity
   end
 
+  def update_status
+    notification_request_status = NotificationRequestStatus.new(update_status_params)
+    unless notification_request_status.valid?
+      raise UnprocessableEntityError, notification_request_status.errors.to_json
+    end
+
+    notification_request_status.save
+  end
+
   private
 
   def creation_params
@@ -35,6 +44,13 @@ class NotificationRequestController
       tracking_code: @params['tracking_code'],
       email_for_contact: @params['email_for_contact'],
       delivery_company_id: @params['delivery_company_id']
+    }
+  end
+
+  def update_status_params
+    @update_status_params ||= {
+      notification_request_id: @params['notification_request_id'],
+      content: @params['content']
     }
   end
 end
