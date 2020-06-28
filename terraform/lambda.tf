@@ -1,6 +1,6 @@
 resource "aws_lambda_function" "notification_request_update" {
   filename         = var.lambda_notification_request_update_filename
-  function_name    = var.lambda_notification_request_update_name
+  function_name    = "update-notification-request"
   role             = aws_iam_role.lambda_role.arn
   handler          = var.lambda_notification_request_update_handler
   runtime          = var.lambda_notification_request_update_runtime
@@ -14,10 +14,18 @@ resource "aws_lambda_function" "notification_request_update" {
   }
 }
 
-resource "aws_lambda_permission" "notification_request_update_permission" {
-  statement_id  = "AllowExecutionFromSNS"
-  action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.notification_request_update.function_name
-  principal     = "sns.amazonaws.com"
-  source_arn    = aws_sns_topic.notification_request_update.arn
+resource "aws_lambda_function" "remind_update_notification_requests" {
+  filename         = var.lambda_remind_update_notification_requests_filename
+  function_name    = "remind-update-notification-requests"
+  role             = aws_iam_role.lambda_role.arn
+  handler          = var.lambda_remind_update_notification_requests_handler
+  runtime          = var.lambda_remind_update_notification_requests_runtime
+  timeout          = var.lambda_remind_update_notification_requests_timeout
+  source_code_hash = filebase64sha256(var.lambda_remind_update_notification_requests_filename)
+
+  environment {
+    variables = {
+      BACKEND_URL = var.lambda_backend_url
+    }
+  }
 }
