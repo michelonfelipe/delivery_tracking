@@ -5,7 +5,6 @@ source 'https://rubygems.org'
 ruby '2.7.0'
 
 gem 'aws-sdk-sns', '~> 1.22.0'
-gem 'aws-sdk-sqs', '~> 1.24.0'
 gem 'pg', '~> 1.2.3'
 gem 'rake', '~> 13.0.1'
 gem 'sinatra', '~> 2.0.8.1'
