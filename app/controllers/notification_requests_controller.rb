@@ -4,19 +4,31 @@ require_relative '../models/notification_request.rb'
 require_relative '../decorators/notification_request_decorator.rb'
 require_relative '../exceptions/unprocessable_entity_error.rb'
 require_relative '../exceptions/resource_not_found_error.rb'
+require_relative '../../infra/email/new_notification_request_email_sender.rb'
 
 class NotificationRequestController
-  def initialize(params:)
+  def initialize(
+    params:,
+    notification_request_email_sender_class: NewNotificationRequestEmailSender
+  )
     @params = params
+    @notification_request_email_sender_class = notification_request_email_sender_class
   end
 
-  def create
+  def create # rubocop:todo Metrics/MethodLength
     notification_request = NotificationRequest.new(creation_params)
     unless notification_request.valid?
       raise UnprocessableEntityError, notification_request.errors.to_json
     end
 
-    notification_request.save
+    ActiveRecord::Base.transaction do
+      notification_request.save
+      @notification_request_email_sender_class.new(
+        to: notification_request.email_for_contact,
+        tracking_code: notification_request.tracking_code
+      ).send
+    end
+
     NotificationRequestDecorator.call(notification_request)
   end
 

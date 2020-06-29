@@ -4,10 +4,10 @@ This app will help you track your packages, without needing to check any website
 
 ## Setup
 
-We **strongly** recommend using [RVM](rvm.io) to run the following commands.
+We **strongly** recommend using [RVM](https://rvm.io) to run the following commands.
 
 ### Install dependencies
-Using [Bundler](bundler.io) (should be installed if you are using RVM), run:
+Using [Bundler](https://bundler.io) (should be installed if you are using RVM), run:
 ```
 bundler install
 ```
@@ -28,8 +28,14 @@ Example: postgres://postgres:root@localhost:5432
 
 NOTE: **Do not** write a database name on the url, the file `config/database.yml` will create the database with the right name.
 
+#### `EMAIL_DEFAULT_SENDER`
+Default sender for all mailing
+
 #### `NOTIFICATION_REQUEST_UPDATE_PUBLISHER_ARN`
 Topic's arn to publish messages when a `NotificationRequest` needs to re-checked to update its status
+
+#### `SENDGRID_API_KEY`
+[Sendgrid](https://sendgrid.com) API key to send emails
 
 ### Database Setup
 

@@ -7,6 +7,7 @@ ruby '2.7.0'
 gem 'aws-sdk-sns', '~> 1.22.0'
 gem 'pg', '~> 1.2.3'
 gem 'rake', '~> 13.0.1'
+gem 'sendgrid-ruby', '~> 6.3.1'
 gem 'sinatra', '~> 2.0.8.1'
 gem 'sinatra-activerecord', '~> 2.0.18'
 

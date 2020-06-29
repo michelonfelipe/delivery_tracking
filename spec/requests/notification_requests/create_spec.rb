@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../../factories/delivery_company.rb'
+require_relative '../../../infra/email/new_notification_request_email_sender.rb'
 
 RSpec.describe 'POST /notification_requests' do
   context 'given a POST request to /notification_requests' do
@@ -16,13 +17,38 @@ RSpec.describe 'POST /notification_requests' do
         }
       end
 
-      it 'returns status 204' do
-        expect(request.status).to eq 204
+      context 'and the confirmation email is sent sucesfully' do
+        before(:each) do
+          allow_any_instance_of(NewNotificationRequestEmailSender).to receive(:send)
+        end
+
+        it 'returns status 204' do
+          expect(request.status).to eq 204
+        end
+
+        it 'saves the entity on the database' do
+          request
+          expect(NotificationRequest.count).to eq notification_requests_count_before_request + 1
+        end
+
+        it 'sends the confirmation email' do
+          expect_any_instance_of(NewNotificationRequestEmailSender)
+            .to receive(:send).exactly(1).times
+
+          request
+        end
       end
 
-      it 'saves the entity on the database' do
-        request
-        expect(NotificationRequest.count).to eq notification_requests_count_before_request + 1
+      context 'but the confirmation email is not sent' do
+        before(:each) do
+          allow_any_instance_of(NewNotificationRequestEmailSender)
+            .to receive(:send)
+            .and_raise('Error')
+        end
+
+        it 'raises an error' do
+          expect { request }.to raise_error('Error')
+        end
       end
     end
 
