@@ -13,6 +13,10 @@ Layout/SpaceAroundMethodCallOperator:
   Enabled: true
 
 # Lint
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - 'spec/**/*'
+
 Lint/RaiseException:
   Enabled: true
 
