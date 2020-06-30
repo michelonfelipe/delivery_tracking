@@ -17,16 +17,35 @@ RSpec.describe 'POST /notification_requests/:id/status' do
       context 'and the request body is valid' do
         let(:request_body) { { content: 'new status' } }
 
-        it 'returns status 201' do
-          expect(request.status).to eq(201)
+        context 'and the update email is sent sucesfully' do
+          before(:each) do
+            allow_any_instance_of(UpdateOnNotificationRequestEmailSender)
+              .to receive(:send)
+          end
+
+          it 'returns status 201' do
+            expect(request.status).to eq(201)
+          end
+
+          it 'saves the entity on the database' do
+            notification_request_statuses_count = notification_request.statuses.length
+            request
+            expect(
+              notification_request.reload.statuses.length
+            ).to eq(notification_request_statuses_count + 1)
+          end
         end
 
-        it 'saves the entity on the database' do
-          notification_request_statuses_count = notification_request.statuses.length
-          request
-          expect(
-            notification_request.reload.statuses.length
-          ).to eq(notification_request_statuses_count + 1)
+        context 'and the update email is not sent' do
+          before(:each) do
+            allow_any_instance_of(NotificationRequestStatusCreator)
+              .to receive(:create!)
+              .and_raise(StandardError.new('cant send email'))
+          end
+
+          it 'raises an error' do
+            expect { request }.to raise_error(StandardError, 'cant send email')
+          end
         end
       end
 
