@@ -109,3 +109,7 @@ make
 After that, run terraform plan/apply to deploy all lambdas at once.
 
 NOTE: If there is a change on a lambda function, just rerun the `make` command on it's directory. Terraform will notice that the zip file changed its hashcode and, when you redeploy the function, it will have the changes.
+
+## License
+
+[MIT-LICENSE](LICENSE)
