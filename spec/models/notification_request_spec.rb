@@ -33,6 +33,14 @@ RSpec.describe NotificationRequest do
       end
     end
 
+    context 'because it has an invalid email for contact' do
+      let(:subject) { build(:notification_request, email_for_contact: 'abc') }
+
+      it 'cannot be saved' do
+        expect(subject.valid?).to eq false
+      end
+    end
+
     context 'because it has no delivery company' do
       let(:subject) { build(:notification_request, delivery_company: nil) }
 
