@@ -8,8 +8,8 @@ RSpec.describe '/' do
       expect(subjet.status).to eq 200
     end
 
-    it 'displays a friendly message' do
-      expect(subjet.body).to include 'Hello world!'
+    it 'displays a the plataform title' do
+      expect(subjet.body).to include 'Notificador de Entregas'
     end
   end
 end

@@ -5,7 +5,11 @@ require_relative '../../../infra/email/new_notification_request_email_sender.rb'
 
 RSpec.describe 'POST /notification_requests' do
   context 'given a POST request to /notification_requests' do
-    let(:request) { post '/notification_requests', request_body.to_json }
+    let(:request) do
+      post '/notification_requests',
+           request_body.to_json,
+           'CONTENT_TYPE' => 'application/json'
+    end
 
     context 'when the request body is valid' do
       let!(:notification_requests_count_before_request) { NotificationRequest.count }

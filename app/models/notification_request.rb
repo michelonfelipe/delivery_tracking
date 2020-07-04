@@ -12,7 +12,7 @@ class NotificationRequest < ActiveRecord::Base
 
   validates :status, presence: true
   validates :tracking_code, presence: true
-  validates :email_for_contact, presence: true
+  validates :email_for_contact, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
 
   belongs_to :delivery_company, optional: false
 

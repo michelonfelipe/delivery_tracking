@@ -11,9 +11,18 @@ require_relative './app/exceptions/unprocessable_entity_error.rb'
 require_relative './app/exceptions/resource_not_found_error.rb'
 
 set :database_file, './config/database.yml'
+set :views, settings.root + '/app/views'
+
+FORM_CONTENT_TYPE = 'application/x-www-form-urlencoded'
+JSON_CONTENT_TYPE = 'application/json'
 
 get '/' do
-  'Hello world!'
+  erb :'notification_requests/create',
+      layout: :index,
+      locals: {
+        delivery_companies: DeliveryCompaniesController.index,
+        form_errors: JSON.parse(params['form_errors'] || '{}')
+      }
 end
 
 get '/delivery_companies' do
@@ -49,6 +58,7 @@ post '/reminders/update_notification_requests' do
 end
 
 post '/notification_requests' do
+  pass unless request.content_type == JSON_CONTENT_TYPE
   content_type :json
 
   begin
@@ -57,6 +67,17 @@ post '/notification_requests' do
   rescue UnprocessableEntityError => e
     status 422
     e.message
+  end
+end
+
+post '/notification_requests' do
+  pass unless request.content_type == FORM_CONTENT_TYPE
+  begin
+    status 204
+    NotificationRequestController.new(params: params).create.to_json
+    redirect '/'
+  rescue UnprocessableEntityError => e
+    redirect "/?form_errors=#{e.message}"
   end
 end
 
@@ -80,4 +101,10 @@ end
 
 def parsed_request_body
   JSON.parse(request.body.read)
+end
+
+helpers do
+  def show_errors_for_field(errors, field_name)
+    errors[field_name].join(',') if errors&.dig(field_name)
+  end
 end
