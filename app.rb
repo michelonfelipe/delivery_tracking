@@ -4,6 +4,7 @@ require 'sinatra'
 require 'dotenv/load' unless production?
 require 'i18n'
 require 'sinatra/activerecord'
+require 'sinatra/flash'
 
 require_relative './app/controllers/delivery_companies_controller.rb'
 require_relative './app/controllers/notification_requests_controller.rb'
@@ -13,6 +14,8 @@ require_relative './app/exceptions/resource_not_found_error.rb'
 
 set :database_file, './config/database.yml'
 set :views, settings.root + '/app/views'
+
+enable :sessions
 
 I18n.load_path << Dir[File.expand_path('config/locales') + '/*.yml']
 I18n.config.enforce_available_locales = false
@@ -26,7 +29,8 @@ get '/' do
       layout: :index,
       locals: {
         delivery_companies: DeliveryCompaniesController.index,
-        form_errors: JSON.parse(params['form_errors'] || '{}')
+        form_errors: JSON.parse(flash[:errors] || '{}'),
+        success: flash[:success]
       }
 end
 
@@ -80,9 +84,11 @@ post '/notification_requests' do
   begin
     status 204
     NotificationRequestController.new(params: params).create.to_json
+    flash[:success] = true
     redirect '/'
   rescue UnprocessableEntityError => e
-    redirect "/?form_errors=#{e.message}"
+    flash[:errors] = e.message
+    redirect '/'
   end
 end
 

@@ -123,6 +123,18 @@ form .btn:active {
   z-index: 1;
 }
 span.field-error {
-  font-family: "Open Sans", sans-serif;
   color: #f00;
+}
+.flash-success {
+  background-color: #63ab61;
+  border-radius: 3px;
+  color: #fff;
+  width: 90%;
+  font-size: 16px;
+  margin-bottom: 10px;
+  margin-left: 5%;
+  padding: 6px 0;
+  height: 40px;
+  padding-left: 6px;
+  text-align: left;
 }

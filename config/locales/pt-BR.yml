@@ -8,16 +8,18 @@ pt-BR:
         email_for_contact: Email para contato
     errors:
       messages:
-        blank: nao pode ficar em branco
+        blank: Não pode ficar em branco
       models:
         notification_request:
           attributes:
             email_for_contact:
-              invalid: formato de email invalido
+              invalid: Formato de email inválido
 
   views:
-    notify_me: Notifique-me!
-
+    notification_request:
+      create:
+        notify_me: Notifique-me!
+        success: Solicitação criada com sucesso
 
   email:
     new_notification_request:
