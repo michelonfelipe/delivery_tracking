@@ -1,0 +1,29 @@
+pt-BR:
+  delivery_tracking: Notificador de Entregas
+
+  activerecord:
+    attributes:
+      notification_request:
+        tracking_code: Código de rastreio
+        email_for_contact: Email para contato
+    errors:
+      messages:
+        blank: nao pode ficar em branco
+      models:
+        notification_request:
+          attributes:
+            email_for_contact:
+              invalid: formato de email invalido
+
+  views:
+    notify_me: Notifique-me!
+
+
+  email:
+    new_notification_request:
+      subject: Recebemos a sua solicitação
+      body: "A notificação para o código de rastreio %{tracking_code} foi criada com sucesso!"
+
+    update_on_notification_request:
+      subject: Houve uma atualização no seu pedido
+      body: "O pedido com o código de rastreio %{tracking_code} sofreu uma atualização"

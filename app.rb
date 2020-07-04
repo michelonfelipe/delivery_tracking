@@ -2,6 +2,7 @@
 
 require 'sinatra'
 require 'dotenv/load' unless production?
+require 'i18n'
 require 'sinatra/activerecord'
 
 require_relative './app/controllers/delivery_companies_controller.rb'
@@ -12,6 +13,10 @@ require_relative './app/exceptions/resource_not_found_error.rb'
 
 set :database_file, './config/database.yml'
 set :views, settings.root + '/app/views'
+
+I18n.load_path << Dir[File.expand_path('config/locales') + '/*.yml']
+I18n.config.enforce_available_locales = false
+I18n.default_locale = 'pt-BR'
 
 FORM_CONTENT_TYPE = 'application/x-www-form-urlencoded'
 JSON_CONTENT_TYPE = 'application/json'

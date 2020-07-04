@@ -2,7 +2,6 @@
 
 require 'sendgrid-ruby'
 
-# TODO: Use i18n on email content
 class NewNotificationRequestEmailSender
   def initialize(to:, tracking_code:)
     @to = to
@@ -30,13 +29,13 @@ class NewNotificationRequestEmailSender
   end
 
   def subject
-    'Recebemos a sua solicitação'
+    I18n.t('email.new_notification_request.subject')
   end
 
   def content
     SendGrid::Content.new(
       type: 'text/plain',
-      value: "A notificação para o código de rastreio \"#{@tracking_code}\" foi criada com sucesso!"
+      value: I18n.t('email.new_notification_request.body', tracking_code: @tracking_code)
     )
   end
 end

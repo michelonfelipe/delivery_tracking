@@ -1,13 +1,22 @@
 <div class="container">
   <div class="content">
     <%= erb :logo %>
-    <h1>Notificador de Entregas</h1>
+    <h1><%= I18n.t(:delivery_tracking) %></h1>
 
     <form action="/notification_requests" method="POST">
-      <input type="text" placeholder="Código de Rastreio" class="field" name="tracking_code"><br />
+      <input
+        type="text"
+        placeholder="<%= NotificationRequest.human_attribute_name('tracking_code') %>"
+        class="field"
+        name="tracking_code"
+      ><br />
       <span class="field-error"> <%= show_errors_for_field(form_errors, 'tracking_code') %> </span>
 
-      <input placeholder="Email para contato" class="field" name="email_for_contact"><br />
+      <input
+        placeholder="<%= NotificationRequest.human_attribute_name('email_for_contact') %>"
+        class="field"
+        name="email_for_contact"
+      ><br />
       <span class="field-error"> <%= show_errors_for_field(form_errors, 'email_for_contact') %> </span>
 
       <select class="field" name="delivery_company_id">
@@ -15,7 +24,7 @@
           <%= "<option value=\"#{company[:id]}\">#{company[:name]}</option>" %>
         <% end %>
       </select>
-      <input type="submit" value="Notifique-me!" class="btn">
+      <input type="submit" value="<%= I18n.t('views.notify_me') %>" class="btn">
     </form>
   </div>
 </div>
