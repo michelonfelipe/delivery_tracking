@@ -32,5 +32,37 @@
       </select>
       <input type="submit" value="<%= I18n.t('views.notification_request.create.notify_me') %>" class="btn">
     </form>
+    <div class="pass-link">
+      <a id="open-button" class="open-button" href="#" >
+        <%= I18n.t('views.notification_request.create.modal.title') %>
+      </a>
+    </div>
   </div>
 </div>
+
+<div class="modal-overlay closed" id="modal-overlay"></div>
+
+<div class="modal closed" id="modal">
+  <button class="close-button" id="close-button">&times;</button>
+  <div class="modal-guts">
+    <h1><%= I18n.t('views.notification_request.create.modal.title') %></h1>
+    <div><%= I18n.t('views.notification_request.create.modal.content') %></div>
+  </div>
+</div>
+
+<script>
+  var modal = document.querySelector("#modal");
+  var modalOverlay = document.querySelector("#modal-overlay");
+  var closeButton = document.querySelector("#close-button");
+  var openButton = document.querySelector("#open-button");
+
+  closeButton.addEventListener("click", function() {
+    modal.classList.toggle("closed");
+    modalOverlay.classList.toggle("closed");
+  });
+
+  openButton.addEventListener("click", function() {
+    modal.classList.toggle("closed");
+    modalOverlay.classList.toggle("closed");
+  });
+</script>

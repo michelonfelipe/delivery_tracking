@@ -20,7 +20,30 @@ pt-BR:
       create:
         notify_me: Notifique-me!
         success: Solicitação criada com sucesso
+        modal:
+          title: Como isso funciona?
+          content: "
+            <p>Este site vai te avisar toda vez que seu pacote de entrega sofrer algum alteração.</p>
+            <p>Depois de preencher o formulário e enviá-lo, vamos te enviar um email para confirmação, então fique de olho! Lembre de checar sua caixa de SPAM.</p>
+            <p>Depois disso, é só esperar que vamos te enviar um email, sempre que houver uma alteração na entrega do seu pacote.</p>
 
+            <h1>FAQ</h1>
+            <h2>Como faço para me descadastrar?</h2>
+            <p>Ainda não suportamos isso, mas, se seu pacote não sofrer alterações por 5 dias corridos, você receberá um email informando que não faremos mais o rastreio do seu pacote.</p>
+            <br />
+
+            <h2>Depois que meu pacote foi entregue, vou receber mais alguma notificação?</h2>
+            <p>Depois de 5 dias corridos, você receberá um email informando que não faremos mais o rastreio do seu pacote.</p>
+            <br />
+
+            <h2>Quando houver uma alteração na entrega, quando tempo pode demorar receber a notificação?</h2>
+            <p>Em até 1 hora vamos enviar um email, para te avisar que houve uma alteração na entrega.</p>
+            <br />
+
+            <h2>A notificação me mostra quais alterações foram feitas no pedido?</h2>
+            <p>Não. Só vamos notificar que houve uma alteração, mas não vamos explicar qual foi.</p>
+            <br />
+          "
   email:
     new_notification_request:
       subject: Recebemos a sua solicitação

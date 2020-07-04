@@ -27,6 +27,17 @@ h1 {
   text-align: center;
   width: 70%;
 }
+h2 {
+  color: #777;
+  font-size: 20px;
+  font-weight: 300;
+  margin: auto;
+  margin-bottom: 20px;
+  text-align: center;
+}
+p {
+  text-align: justify;
+}
 .logo {
   fill: #1F78B4;
   max-height: 80px;
@@ -121,6 +132,7 @@ form .btn:active {
   right: 20px;
   top: 10px;
   z-index: 1;
+  cursor: pointer;
 }
 span.field-error {
   color: #f00;
