@@ -3,6 +3,12 @@
     <%= erb :logo %>
     <h1><%= I18n.t(:delivery_tracking) %></h1>
 
+    <% if flash[:success] %>
+      <div class="flash-success">
+        <span><%= I18n.t('views.notification_request.create.success') %></span>
+      </div>
+    <% end %>
+
     <form action="/notification_requests" method="POST">
       <input
         type="text"
@@ -24,7 +30,7 @@
           <%= "<option value=\"#{company[:id]}\">#{company[:name]}</option>" %>
         <% end %>
       </select>
-      <input type="submit" value="<%= I18n.t('views.notify_me') %>" class="btn">
+      <input type="submit" value="<%= I18n.t('views.notification_request.create.notify_me') %>" class="btn">
     </form>
   </div>
 </div>
