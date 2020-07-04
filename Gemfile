@@ -10,6 +10,7 @@ gem 'rake', '~> 13.0.1'
 gem 'sendgrid-ruby', '~> 6.3.1'
 gem 'sinatra', '~> 2.0.8.1'
 gem 'sinatra-activerecord', '~> 2.0.18'
+gem 'sinatra-flash', '~> 0.3.0'
 
 group :development, :test do
   gem 'dotenv', '~> 2.7.5'

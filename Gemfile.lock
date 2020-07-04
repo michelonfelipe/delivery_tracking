@@ -92,6 +92,8 @@ GEM
     sinatra-activerecord (2.0.18)
       activerecord (>= 4.1)
       sinatra (>= 1.0)
+    sinatra-flash (0.3.0)
+      sinatra (>= 1.0.0)
     thread_safe (0.3.6)
     tilt (2.0.10)
     tzinfo (1.2.7)
@@ -116,6 +118,7 @@ DEPENDENCIES
   sendgrid-ruby (~> 6.3.1)
   sinatra (~> 2.0.8.1)
   sinatra-activerecord (~> 2.0.18)
+  sinatra-flash (~> 0.3.0)
 
 RUBY VERSION
    ruby 2.7.0p0
