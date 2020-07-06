@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
+require 'date'
+
 require_relative './notification_request_status'
 
 class NotificationRequest < ActiveRecord::Base
+  DAYS_TO_BE_CONSIDERED_INACTIVE = 5
   STATUSES = {
     ACTIVE: 'active',
     DONE: 'done'
@@ -22,4 +25,16 @@ class NotificationRequest < ActiveRecord::Base
            class_name: 'NotificationRequestStatus'
 
   scope :active, -> { where(status: STATUSES[:ACTIVE]) }
+  scope :inactive, lambda {
+    find_by_sql(["
+      SELECT *
+      FROM notification_requests
+      WHERE id IN(
+        SELECT distinct on (notification_request_id) notification_request_id
+        FROM notification_request_statuses
+        WHERE created_at <= ?
+        ORDER BY notification_request_id, created_at
+      )
+    ", DateTime.now - NotificationRequest::DAYS_TO_BE_CONSIDERED_INACTIVE])
+  }
 end
