@@ -52,3 +52,7 @@ pt-BR:
     update_on_notification_request:
       subject: Houve uma atualização no seu pedido
       body: "O pedido com o código de rastreio %{tracking_code} sofreu uma atualização"
+
+    finish_notification_request:
+      subject: O rastreio do seu pedido foi finalizado
+      body: "O seu pedido, com o código de rastreio %{tracking_code}, está há muito tempo sem uma atualização. A partir de agora, vamos considerá-lo como finalizado. Se quiser continuar recebendo notificações, vá ao nosso site e refaça a solicitação"

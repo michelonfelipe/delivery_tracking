@@ -66,6 +66,11 @@ post '/reminders/update_notification_requests' do
   RemindersController.new.update_notification_requests
 end
 
+post '/reminders/close_inactive_notification_requests' do
+  status 204
+  RemindersController.new.close_inactive_notification_requests
+end
+
 post '/notification_requests' do
   pass unless request.content_type == JSON_CONTENT_TYPE
   content_type :json
