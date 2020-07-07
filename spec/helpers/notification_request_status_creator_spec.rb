@@ -20,7 +20,7 @@ RSpec.describe NotificationRequestStatusCreator do
             expect { result.create! }.to change { NotificationRequestStatus.count }.by(1)
           end
 
-          it 'save the NotificationRequestStatus ' do
+          it 'sends the email ' do
             expect_any_instance_of(UpdateOnNotificationRequestEmailSender)
               .to receive(:send).exactly(1).time
 
