@@ -28,6 +28,27 @@ variable "lambda_remind_update_notification_requests_timeout" {
 }
 
 
+variable "lambda_remind_close_inactive_notification_requests_handler" {
+  description = "The handler of the lambda remind_close_inactive_notification_requests"
+  type        = string
+}
+
+variable "lambda_remind_close_inactive_notification_requests_filename" {
+  description = "The filename of the lambda remind_close_inactive_notification_requests"
+  type        = string
+}
+
+
+variable "lambda_remind_close_inactive_notification_requests_runtime" {
+  description = "The runtime language of the lambda remind_close_inactive_notification_requests"
+  type        = string
+}
+
+variable "lambda_remind_close_inactive_notification_requests_timeout" {
+  description = "The timeout, in seconds, of the lambda remind_close_inactive_notification_requests"
+  type        = string
+}
+
 variable "lambda_notification_request_update_handler" {
   description = "The handler of the lambda notification_request_update"
   type        = string
@@ -37,7 +58,6 @@ variable "lambda_notification_request_update_filename" {
   description = "The filename of the lambda notification_request_update"
   type        = string
 }
-
 
 variable "lambda_notification_request_update_runtime" {
   description = "The runtime language of the lambda notification_request_update"
