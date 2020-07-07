@@ -9,6 +9,11 @@ lambda_remind_update_notification_requests_filename="../infra/lambdas/remind_upd
 lambda_remind_update_notification_requests_runtime="ruby2.7"
 lambda_remind_update_notification_requests_timeout="10"
 
+lambda_remind_close_inactive_notification_requests_handler="lambda_function.lambda_handler"
+lambda_remind_close_inactive_notification_requests_filename="../infra/lambdas/remind_close_inactive_notification_requests/lambda.zip"
+lambda_remind_close_inactive_notification_requests_runtime="ruby2.7"
+lambda_remind_close_inactive_notification_requests_timeout="60"
+
 lambda_backend_url="https://delivery-tracking.herokuapp.com"
 
 # SNS
