@@ -84,7 +84,7 @@ RSpec.describe NotificationRequest do
   context 'when it is inactive' do
     before(:each) do
       create_list(
-        :notification_request, 2, status: NotificationRequest::STATUSES[:ACTIVE]
+        :notification_request, 1, status: NotificationRequest::STATUSES[:ACTIVE]
       ).each do |nr|
         create(
           :notification_request_status, notification_request: nr, created_at: DateTime.now
@@ -93,6 +93,24 @@ RSpec.describe NotificationRequest do
 
       create_list(
         :notification_request, 2, status: NotificationRequest::STATUSES[:ACTIVE]
+      ).each do |nr|
+        create(
+          :notification_request_status,
+          notification_request: nr,
+          created_at: DateTime.now - NotificationRequest::DAYS_TO_BE_CONSIDERED_INACTIVE
+        )
+      end
+
+      create_list(
+        :notification_request, 3, status: NotificationRequest::STATUSES[:DONE]
+      ).each do |nr|
+        create(
+          :notification_request_status, notification_request: nr, created_at: DateTime.now
+        )
+      end
+
+      create_list(
+        :notification_request, 4, status: NotificationRequest::STATUSES[:DONE]
       ).each do |nr|
         create(
           :notification_request_status,
