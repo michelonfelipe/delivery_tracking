@@ -26,15 +26,21 @@ class NotificationRequest < ActiveRecord::Base
 
   scope :active, -> { where(status: STATUSES[:ACTIVE]) }
   scope :inactive, lambda {
-    find_by_sql(["
-      SELECT *
-      FROM notification_requests
-      WHERE id IN(
-        SELECT distinct on (notification_request_id) notification_request_id
-        FROM notification_request_statuses
-        WHERE created_at <= ?
-        ORDER BY notification_request_id, created_at
-      )
-    ", DateTime.now - NotificationRequest::DAYS_TO_BE_CONSIDERED_INACTIVE])
+    find_by_sql(
+      [
+        "
+          SELECT *
+          FROM notification_requests
+          WHERE id IN(
+            SELECT distinct on (notification_request_id) notification_request_id
+            FROM notification_request_statuses
+            WHERE created_at <= ?
+            ORDER BY notification_request_id, created_at
+          ) AND status = ?
+        ",
+        DateTime.now - NotificationRequest::DAYS_TO_BE_CONSIDERED_INACTIVE,
+        STATUSES[:ACTIVE]
+      ]
+    )
   }
 end
