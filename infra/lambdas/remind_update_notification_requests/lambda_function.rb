@@ -10,5 +10,6 @@ def lambda_handler(event:, context:)
   http = Net::HTTP.new(uri.host, uri.port)
   http.use_ssl = true
   request = Net::HTTP::Post.new(uri.request_uri)
+  request['SHARED-SECRET'] = ENV['SHARED_SECRET']
   http.request(request)
 end

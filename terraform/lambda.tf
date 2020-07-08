@@ -10,6 +10,7 @@ resource "aws_lambda_function" "notification_request_update" {
   environment {
     variables = {
       BACKEND_URL = var.lambda_backend_url
+      SHARED_SECRET = var.lambda_shared_secret
     }
   }
 }
@@ -26,6 +27,7 @@ resource "aws_lambda_function" "remind_update_notification_requests" {
   environment {
     variables = {
       BACKEND_URL = var.lambda_backend_url
+      SHARED_SECRET = var.lambda_shared_secret
     }
   }
 }
@@ -41,6 +43,7 @@ resource "aws_lambda_function" "remind_close_inactive_notification_requests" {
   environment {
     variables = {
       BACKEND_URL = var.lambda_backend_url
+      SHARED_SECRET = var.lambda_shared_secret
     }
   }
 }

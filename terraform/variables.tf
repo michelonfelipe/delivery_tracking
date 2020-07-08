@@ -70,7 +70,12 @@ variable "lambda_notification_request_update_timeout" {
 }
 
 variable "lambda_backend_url" {
-  description = "The backend url used in lambda notification_request_update"
+  description = "The backend url used in lambdas"
+  type        = string
+}
+
+variable "lambda_shared_secret" {
+  description = "The shared secret used in lambdas to communicate with the backend"
   type        = string
 }
 
