@@ -1,10 +1,16 @@
 # frozen_string_literal: true
 
+require_relative '../../factories/delivery_company.rb'
+
 require_relative '../../../app/models/delivery_company.rb'
 
 RSpec.describe 'DELETE /delivery_companies/:id' do
   context 'given a DELETE request to /delivery_companies/:id' do
-    let(:request) { delete "/delivery_companies/#{delivery_company.id}" }
+    let(:request) do
+      delete "/delivery_companies/#{delivery_company.id}",
+             nil,
+             'SHARED-SECRET' => ENV['SHARED_SECRET']
+    end
 
     context 'when the entity exists' do
       let!(:delivery_company) { create(:delivery_company) }

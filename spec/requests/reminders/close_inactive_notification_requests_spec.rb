@@ -7,7 +7,11 @@ require_relative '../../../app/helpers/notification_request_finisher.rb'
 
 RSpec.describe 'POST /reminders/update_notification_requests' do
   context 'when receiving a request to remind to update notification requests' do
-    let(:request) { post '/reminders/close_inactive_notification_requests' }
+    let(:request) do
+      post '/reminders/close_inactive_notification_requests',
+           nil,
+           'SHARED-SECRET' => ENV['SHARED_SECRET']
+    end
 
     context 'and there are inactive notification requests' do
       before(:each) do

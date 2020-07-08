@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative '../../factories/delivery_company.rb'
+
 RSpec.describe 'GET /delivery_companies' do
   context 'given a GET request to /delivery_companies' do
     let(:subjet) { get '/delivery_companies' }

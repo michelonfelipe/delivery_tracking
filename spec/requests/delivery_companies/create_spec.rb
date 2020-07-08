@@ -1,10 +1,15 @@
 # frozen_string_literal: true
 
 require_relative '../../../app/models/delivery_company.rb'
+require_relative '../../factories/delivery_company.rb'
 
 RSpec.describe 'POST /delivery_companies' do
   context 'given a POST request to /delivery_companies' do
-    let(:request) { post '/delivery_companies', request_body.to_json }
+    let(:request) do
+      post '/delivery_companies',
+           request_body.to_json,
+           'SHARED-SECRET' => ENV['SHARED_SECRET']
+    end
 
     context 'when the request body is valid' do
       let(:request_body) { { name: 'company name' } }

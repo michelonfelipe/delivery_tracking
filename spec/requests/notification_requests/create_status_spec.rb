@@ -7,7 +7,8 @@ RSpec.describe 'POST /notification_requests/:id/status' do
   context 'given a POST request to /notification_requests/:id/status' do
     let(:request) do
       post "/notification_requests/#{notification_request_id}/status",
-           request_body.to_json
+           request_body.to_json,
+           'SHARED-SECRET' => ENV['SHARED_SECRET']
     end
 
     context 'when the id on the url is valid' do
