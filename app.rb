@@ -41,6 +41,8 @@ get '/delivery_companies' do
 end
 
 post '/delivery_companies' do
+  protected!
+
   content_type :json
 
   begin
@@ -53,6 +55,8 @@ post '/delivery_companies' do
 end
 
 delete '/delivery_companies/:id' do
+  protected!
+
   begin
     status 204
     DeliveryCompaniesController.delete(params['id'])
@@ -62,11 +66,15 @@ delete '/delivery_companies/:id' do
 end
 
 post '/reminders/update_notification_requests' do
+  protected!
+
   status 204
   RemindersController.new.update_notification_requests
 end
 
 post '/reminders/close_inactive_notification_requests' do
+  protected!
+
   status 204
   RemindersController.new.close_inactive_notification_requests
 end
@@ -98,6 +106,8 @@ post '/notification_requests' do
 end
 
 post '/notification_requests/:id/status' do
+  protected!
+
   controller_params = {
     'notification_request_id' => params['id'],
     'content' => parsed_request_body['content']
@@ -122,5 +132,9 @@ end
 helpers do
   def show_errors_for_field(errors, field_name)
     errors[field_name].join(',') if errors&.dig(field_name)
+  end
+
+  def protected!
+    halt 401 if request.env['SHARED-SECRET'] != ENV['SHARED_SECRET']
   end
 end

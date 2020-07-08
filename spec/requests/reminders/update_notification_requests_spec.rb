@@ -6,7 +6,11 @@ require_relative '../../../infra/sns/notification_request_update_publisher.rb'
 
 RSpec.describe 'POST /reminders/update_notification_requests' do
   context 'when receiving a request to remind to update notification requests' do
-    let(:request) { post '/reminders/update_notification_requests' }
+    let(:request) do
+      post '/reminders/update_notification_requests',
+           nil,
+           'SHARED-SECRET' => ENV['SHARED_SECRET']
+    end
 
     context 'and there are active notification requests' do
       before(:each) do

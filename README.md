@@ -37,6 +37,9 @@ Topic's arn to publish messages when a `NotificationRequest` needs to re-checked
 #### `SENDGRID_API_KEY`
 [Sendgrid](https://sendgrid.com) API key to send emails
 
+#### `SHARED_SECRET`
+Token to protect endpoints that can create/destroy essential resources
+
 ### Database Setup
 
 To create and setup both development and test databases, run:

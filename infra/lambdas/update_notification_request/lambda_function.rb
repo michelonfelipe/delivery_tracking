@@ -31,6 +31,7 @@ def send_status_to_backend(status, destiny_url, notification_request_id)
   http.use_ssl = true
   request = Net::HTTP::Post.new(uri.request_uri)
   request.body = { content: status }.to_json
+  request['SHARED-SECRET'] = ENV['SHARED_SECRET']
   http.request(request)
 end
 
