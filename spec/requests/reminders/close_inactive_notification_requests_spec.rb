@@ -10,7 +10,7 @@ RSpec.describe 'POST /reminders/update_notification_requests' do
     let(:request) do
       post '/reminders/close_inactive_notification_requests',
            nil,
-           'SHARED-SECRET' => ENV['SHARED_SECRET']
+           'HTTP_SHARED_SECRET' => ENV['SHARED_SECRET']
     end
 
     context 'and there are inactive notification requests' do

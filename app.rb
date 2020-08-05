@@ -135,6 +135,7 @@ helpers do
   end
 
   def protected!
-    halt 401 if request.env['SHARED-SECRET'] != ENV['SHARED_SECRET']
+    # Request headers have a "HTTP" sufix, are all upper and snake case
+    halt 401 if request.env['HTTP_SHARED_SECRET'] != ENV['SHARED_SECRET']
   end
 end
