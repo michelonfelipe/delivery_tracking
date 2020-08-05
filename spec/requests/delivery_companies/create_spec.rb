@@ -8,7 +8,7 @@ RSpec.describe 'POST /delivery_companies' do
     let(:request) do
       post '/delivery_companies',
            request_body.to_json,
-           'SHARED-SECRET' => ENV['SHARED_SECRET']
+           'HTTP_SHARED_SECRET' => ENV['SHARED_SECRET']
     end
 
     context 'when the request body is valid' do

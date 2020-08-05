@@ -9,7 +9,7 @@ RSpec.describe 'DELETE /delivery_companies/:id' do
     let(:request) do
       delete "/delivery_companies/#{delivery_company.id}",
              nil,
-             'SHARED-SECRET' => ENV['SHARED_SECRET']
+             'HTTP_SHARED_SECRET' => ENV['SHARED_SECRET']
     end
 
     context 'when the entity exists' do
