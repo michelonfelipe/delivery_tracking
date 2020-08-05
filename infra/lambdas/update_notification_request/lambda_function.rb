@@ -48,4 +48,6 @@ class StatusRetriever
       parsed_page.css('.explore-content').text.gsub(/\s+/, '')
     end
   end
+
+  class Jadlog < Correios; end
 end
